@@ -39,6 +39,13 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Block1.cs" />
+    <Compile Include="Block2.cs" />
+    <Compile Include="Block3.cs" />
+    <Compile Include="Block4.cs" />
+    <Compile Include="Block5.cs" />
+    <Compile Include="Block6.cs" />
+    <Compile Include="Block7.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
