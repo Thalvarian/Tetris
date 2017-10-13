@@ -14,38 +14,44 @@ class Tetromino
 {
     protected Texture2D TetBlock;
     protected Vector2 Blockposition, velocity;
-
+    Tetromino currentBlock;
     const int Height = 4;
     const int Width = 4;
            
     int[,] BlockGrid;
+
+    int[,] GridArray;
+
+    Random r = null;
+
+   
 
     public Tetromino(Texture2D TetBlock)
     {
         this.TetBlock = TetBlock;
     }
 
-    
+
     public void HandleInput(InputHelper inputHelper)
     {
         if (inputHelper.KeyPressed(Keys.Z))
             //roteer linksom
-        if (inputHelper.KeyPressed(Keys.X))
+            if (inputHelper.KeyPressed(Keys.X))
                 //roteer rechtsom
-        if (inputHelper.KeyPressed(Keys.Left) && Blockposition.X > (SCREENWIDTH - TetBlock.Width))
-                    // hier nog geen rekening gehouden met eventuele blokken die links van het blokje kunnen zijn. Zelfde geldt voor 1 plek naar rechts.
-        {
-            Blockposition.X -= TetBlock.Width;
-        }
+                if (inputHelper.KeyPressed(Keys.Left) && Blockposition.X > (SCREENWIDTH - TetBlock.Width))
+                // hier nog geen rekening gehouden met eventuele blokken die links van het blokje kunnen zijn. Zelfde geldt voor 1 plek naar rechts.
+                {
+                    Blockposition.X -= TetBlock.Width;
+                }
         //1 plek naar links
         if (inputHelper.KeyPressed(Keys.Right) && Blockposition.X < (SCREENWIDTH - TetBlock.Width))
         {
             Blockposition.X += TetBlock.Width;
         }
-                        //1 plek naar rechts.
+        //1 plek naar rechts.
         if (inputHelper.KeyPressed(Keys.Down))
-                        { }
-            //snel naar beneden
+        { }
+        //snel naar beneden
     }
 
     public void CreateGrid()
@@ -60,40 +66,68 @@ class Tetromino
         }
     }
 
-
-    public void BlockCalculator()
+    public bool IsCollision()
     {
+        GridArray = new int[12, 20];
+        for (int a = 0; a < 12; a++)
         
-        System.Random r = new System.Random(7);
+            for (int b = 0; b < 20; b++)
+            {
+                if (GridArray[a, b] > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        return false;
+        }
+    
+
+    public void IsCurrentBlock()
+    {
+          
+        r = new Random(7);
+
         if (r.Next() == 0)
         {
-            // block 1, nagaan hoe hier de subclass aangeroepen kan worden. Een list van classes schijnt mogelijk te zijn, maar is wat omslachtig. 
+            currentBlock = new Block1(TetBlock);
         }
         else if (r.Next() == 1)
         {
-            // draw Block 2
+            currentBlock = new Block2(TetBlock);
         }
         else if (r.Next() == 2)
         {
-            // draw Block 3
+            currentBlock = new Block3(TetBlock);
         }
         else if (r.Next() == 3)
         {
-            // draw Block 4
+            currentBlock = new Block4(TetBlock);
         }
         else if (r.Next() == 4)
         {
-            // draw Block 5
+            currentBlock = new Block5(TetBlock);
         }
         else if (r.Next() == 5)
         {
-            // draw Block 6
+            currentBlock = new Block6(TetBlock);
         }
         else
         {
-            // draw Block 7
+            currentBlock = new Block7(TetBlock);
         }
     }
+
+   
+    public void SwitchBlock()
+    {}
+    
+
+    
+    
 
     public void Update(GameTime gameTime)
     {
@@ -108,15 +142,7 @@ class Tetromino
         //reset code
     }
 
-    //    public void Update(GameTime gameTime)
-    //    {
-    //        Tetpostition += (velocity + new Vector2(velocityOffset, 0)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-    //    }
-
-    //    public void Draw(GameTime gameTime, SpriteBatch t)
-    //    {
-    //        t.Draw(TetBlock, Tetposition, null, Color.Black, 0.0f, originTetBlock, 1.0f, SpriteEffects.None, 0);
-    //    }
+  
 }
 
 

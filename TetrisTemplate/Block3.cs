@@ -30,9 +30,9 @@ namespace Tetris
         {
             CreateGrid();
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     if (Array3[i, j] == 1)
                     {

@@ -4,6 +4,6 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Documents/Visual Studio 2015/Projects/Tetris/Tetris/TetrisTemplate/Content/SpelFont.spritefont</File>
+    <File>D:/Documents/Visual Studio 2015/Projects/Tetris/Retteketetris/TetrisTemplate/Content/SpelFont.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

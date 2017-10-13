@@ -20,19 +20,23 @@ namespace Tetris
         public void CreateArray7()
         {
             Array7 = new int[3,3] {
-            {1,1,0},
-            {0,1,1},
+            {6,6,0},
+            {0,6,6},
             {0,0,0}
                 };
         }
 
-        public void DrawBlock7(GameTime gameTime, SpriteBatch t)
+          
+      
+
+
+        public void DrawBlock(GameTime gameTime, SpriteBatch t)
         {
             CreateGrid();
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < Array7.Rank; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     if (Array7[i, j] == 1)
                     {
