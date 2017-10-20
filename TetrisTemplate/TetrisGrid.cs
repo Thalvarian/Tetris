@@ -54,36 +54,7 @@ class TetrisGrid
             }
         }
     }
-    //public bool IsBlockDrawn()
-    //{
-    //    //Color[] retreivedColor = new Color[1];
-    //    //target.GetData<Color>(0, TGrid, retreivedColor, 0, maximum);
-
-    //    //if (retreivedColor == Cyan)
-    //    if ()
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
-
-    //public void ClearRow()
-    //{
-
-    //    for (int i = 20; i<Height && IsBlockDrawn(); i--)
-    //    {
-    //        for (int j = 0; j<Width && IsBlockDrawn(); j++)
-    //        {
-    //            if (12%j == 0)
-    //            {
-    //                // clear row
-    //            }
-    //        }
-    //    }
-    //}
+   
 }
 
 

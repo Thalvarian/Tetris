@@ -27,6 +27,7 @@ class GameWorld
      * random number generator
      */
 
+    
 
 
 
@@ -50,22 +51,22 @@ class GameWorld
      */
     TetrisGrid grid;
     Tetromino grid2;
-    
-    
-    
+
+
+
 
     public GameWorld(int width, int height, ContentManager Content)
     {
         screenWidth = width;
         screenHeight = height;
-       
+
         gameState = GameState.Playing;
 
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid(block);
         grid2 = new Tetromino(block);
-        
+
 
     }
 
@@ -86,10 +87,10 @@ class GameWorld
         spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch);
         grid2.Draw(gameTime, spriteBatch);
-        
-        
+
+
         //DrawText("Hello!", Vector2.Zero, spriteBatch);
-        spriteBatch.End();    
+        spriteBatch.End();
     }
 
     /*
