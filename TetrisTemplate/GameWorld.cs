@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
+using Tetris;
 
 /*
  * A class for representing the game world.
@@ -39,7 +40,7 @@ class GameWorld
     /*
      * sprite for representing a single tetris block element
      */
-    Texture2D block;
+    public Texture2D block;
 
     /*
      * the current game state
@@ -51,6 +52,7 @@ class GameWorld
      */
     TetrisGrid grid;
     Tetromino grid2;
+    PositionDrawUpdate tetPDU;
 
 
 
@@ -65,7 +67,9 @@ class GameWorld
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid(block);
-        grid2 = new Tetromino(block);
+        grid2 = new Tetromino();
+        tetPDU = new PositionDrawUpdate(block);
+        
 
 
     }
@@ -80,16 +84,15 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
-
+        tetPDU.Update(gameTime);
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch);
-        grid2.Draw(gameTime, spriteBatch);
-
-
+        tetPDU.Draw(gameTime, spriteBatch);
+        
         //DrawText("Hello!", Vector2.Zero, spriteBatch);
         spriteBatch.End();
     }

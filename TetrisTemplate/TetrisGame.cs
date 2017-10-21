@@ -8,8 +8,7 @@ class TetrisGame : Game
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     GameWorld gameWorld;
-    Tetromino tetromino;
-
+   
     [STAThread]
     static void Main(string[] args)
     {

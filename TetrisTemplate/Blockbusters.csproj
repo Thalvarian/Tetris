@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="GameWorld.cs" />
     <Compile Include="InputHelper.cs" />
+    <Compile Include="PositionDrawUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TetrisGame.cs" />
     <Compile Include="TetrisGrid.cs" />
