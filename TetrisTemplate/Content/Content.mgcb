@@ -19,3 +19,15 @@
 /processorParam:TextureFormat=Compressed
 /build:SpelFont.spritefont
 
+#begin CLEAR.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:CLEAR.mp3
+
+#begin SOUNDTRACK.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:SOUNDTRACK.mp3
+

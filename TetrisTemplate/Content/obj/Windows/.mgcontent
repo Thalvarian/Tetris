@@ -5,5 +5,7 @@
   <Config />
   <SourceFiles>
     <File>D:/Documents/Visual Studio 2015/Projects/Tetris/Retteketetris/TetrisTemplate/Content/SpelFont.spritefont</File>
+    <File>D:/Documents/Visual Studio 2015/Projects/Tetris/Retteketetris/TetrisTemplate/Content/CLEAR.mp3</File>
+    <File>D:/Documents/Visual Studio 2015/Projects/Tetris/Retteketetris/TetrisTemplate/Content/SOUNDTRACK.mp3</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -1,7 +1,8 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 class TetrisGame : Game
 {
     SpriteBatch spriteBatch;
@@ -34,6 +35,8 @@ class TetrisGame : Game
     protected override void LoadContent()
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
+        MediaPlayer.Play(Content.Load<Song>("SOUNDTRACK"));
+        //SoundEffect clearRow = Content.Load<SoundEffect>("CLEAR");
 
         // create and reset the game world
         gameWorld = new GameWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content);

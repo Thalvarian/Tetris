@@ -14,7 +14,9 @@ class Tetromino
 {
     protected Texture2D TetBlock;
     const int Height = 4, Width = 4;
-    
+    int Steptime = 300;
+    int ElapsedTime = 0;
+    int KeyboardElapsedTime = 0;
     
 
 
@@ -25,7 +27,7 @@ class Tetromino
     Color[] BlockColor = { Color.Black, Color.Cyan, Color.CornflowerBlue, Color.Orange, Color.Yellow, Color.LimeGreen, Color.Purple, Color.Red };
     Color currentColor;
 
-    static int[,] currentArray, Array;
+    public int[,] currentArray, currentBlock, Array;
 
 
     List<Array> Blocks;
@@ -35,6 +37,8 @@ class Tetromino
     {
         TetBlock = b;
         this.Clear();
+        r = new Random();
+
     }
 
 
@@ -86,104 +90,6 @@ class Tetromino
     //    return false;
     //    }
 
-
-
-    public void RandomBlock()
-    {
-        Blocks = new List<Array>();
-        
-        Blocks.Add(new int[4,4] {
-            {0,0,0,0},
-            {1,1,1,1},      // Block 1
-            {0,0,0,0},
-            {0,0,0,0}
-            });
-
-        Blocks.Add(new int[4, 4] {
-            {1,0,0,0},
-            {1,1,1,0},      // Block 2
-            {0,0,0,0},
-            {0,0,0,0}
-            });
-
-        Blocks.Add(new int[4, 4]{
-            {0,0,1,0},
-            {1,1,1,0},      // Block 3
-            {0,0,0,0},
-            {0,0,0,0}
-                });
-
-        Blocks.Add(new int[4, 4]{
-            {1,1,0,0},
-            {1,1,0,0},      // Block 4
-            {0,0,0,0},
-            {0,0,0,0}
-            });
-
-        Blocks.Add(new int[4, 4] {
-            {1,1,0,0},
-            {0,1,1,0},      // Block 5
-            {0,0,0,0},
-            {0,0,0,0}
-                });
-
-        Blocks.Add(new int[4, 4]{
-            {0,1,0,0},
-            {1,1,1,0},      // Block 6
-            {0,0,0,0},
-            {0,0,0,0}
-                });
-
-        Blocks.Add(new int[4, 4]{
-            {1,1,0,0},
-            {0,1,1,0},      // Block 7
-            {0,0,0,0},
-            {0,0,0,0}
-                });
-        
-    
-        r = new Random();
-
-        if (r.Next(7) == 0)
-        {   
-            currentArray = (int[,])Blocks[0].Clone();
-            currentColor = BlockColor[1];
-            
-        }
-        else if (r.Next(7) == 1)
-        {
-            currentArray = (int[,])Blocks[1].Clone();
-            currentColor = BlockColor[2];
-        }
-        else if (r.Next(7) == 2)
-        {
-            currentArray = (int[,])Blocks[2].Clone();
-            currentColor = BlockColor[3];
-        }
-        else if (r.Next(7) == 3)
-        {
-            currentArray = (int[,])Blocks[3].Clone();
-            currentColor = BlockColor[4];
-        }
-        else if (r.Next(7) == 4)
-        {
-            currentArray = (int[,])Blocks[4].Clone();
-            currentColor = BlockColor[5];
-        }
-        else if (r.Next(7) == 5)
-        {
-            currentArray = (int[,])Blocks[5].Clone();
-            currentColor = BlockColor[6];
-        }
-        else
-        {
-            currentArray = (int[,])Blocks[6].Clone();
-            currentColor = BlockColor[7];
-        }
-      
-        }
-    
-
     public void Position(GameTime gameTime)
     {
         for (int i = 0; i < 4; i++)
@@ -197,16 +103,239 @@ class Tetromino
             }
     }
 
+   
+    //public void randomBlock()
+    //{
+    //    //Blocks = new List<Array>();
+        
+    //    //Blocks.Add(new int[4,4] {
+    //    //    {0,0,0,0},
+    //    //    {1,1,1,1},      // Block 1
+    //    //    {0,0,0,0},
+    //    //    {0,0,0,0}
+    //    //    });
+
+    //    //Blocks.Add(new int[3, 3] {
+    //    //    {1,0,0},
+    //    //    {1,1,1},      // Block 2
+    //    //    {0,0,0},
+    //    //    });
+
+    //    //Blocks.Add(new int[3,3]{
+    //    //    {0,0,1},
+    //    //    {1,1,1},      // Block 3
+    //    //    {0,0,0},
+    //    //    });
+
+    //    //Blocks.Add(new int[2,2]{
+    //    //    {1,1},
+    //    //    {1,1},      // Block 4
+    //    //    });
+
+    //    //Blocks.Add(new int[3,3] {
+    //    //    {1,1,0},
+    //    //    {0,1,1},      // Block 5
+    //    //    {0,0,0},
+    //    //    });
+
+    //    //Blocks.Add(new int[3,3]{
+    //    //    {0,1,0},
+    //    //    {1,1,1},      // Block 6
+    //    //    {0,0,0},
+    //    //    });
+
+    //    //Blocks.Add(new int[3,3]{
+    //    //    {1,1,0},
+    //    //    {0,1,1},      // Block 7
+    //    //    {0,0,0},
+    //    //    });        
+         
+
+    //    //int color = r.Next(0, Blocks.Count);
+    //    //currentBlock = (int[,])Blocks[color].Clone();
+    //    //int size = currentBlock.GetLength(0);
+
+    //    //for (int i = 0; i < size; i++)
+    //    //    for (int j = 0; j < size; j++)
+    //    //    {
+    //    //        currentBlock[i,j] *= (color + 1);
+    //    //        Blockposition = Vector2.Zero;
+    //    //    }
+    //    if (r.Next(7) == 0)
+    //    {
+    //        currentArray = new int[4, 4]  {
+    //        {0,0,0,0},
+    //        {1,1,1,1},      // Block 1
+    //        {0,0,0,0},
+    //        {0,0,0,0}
+    //        };
+    //        //currentArray = (int[,])Blocks[0].Clone();
+    //        currentColor = BlockColor[1];
+
+    //    }
+    //    else if (r.Next(7) == 1)
+    //    {
+    //        currentArray = new int[3, 3] {
+    //        {1,0,0},
+    //        {1,1,1},      // Block 2
+    //        {0,0,0},
+    //        };
+    //        //currentArray = (int[,])Blocks[1].Clone();
+    //        currentColor = BlockColor[2];
+    //    }
+    //    else if (r.Next(7) == 2)
+    //    {
+    //        currentArray = new int[3, 3]{
+    //        {0,0,1},
+    //        {1,1,1},      // Block 3
+    //        {0,0,0},
+    //        };
+    //        //currentArray = (int[,])Blocks[2].Clone();
+    //        currentColor = BlockColor[3];
+    //    }
+    //    else if (r.Next(7) == 3)
+    //    {
+    //        currentArray = new int[2, 2]{
+    //        {1,1},
+    //        {1,1},      // Block 4
+    //        };
+    //        //currentArray = (int[,])Blocks[3].Clone();
+    //        currentColor = BlockColor[4];
+    //    }
+    //    else if (r.Next(7) == 4)
+    //    {
+    //        currentArray = new int[3, 3] {
+    //        {1,1,0},
+    //        {0,1,1},      // Block 5
+    //        {0,0,0},
+    //        };
+    //        //currentArray = (int[,])Blocks[4].Clone();
+    //        currentColor = BlockColor[5];
+    //    }
+    //    else if (r.Next(7) == 5)
+    //    {
+    //        currentArray = new int[3, 3]{
+    //        {0,1,0},
+    //        {1,1,1},      // Block 6
+    //        {0,0,0},
+    //        };
+    //        //currentArray = (int[,])Blocks[5].Clone();
+    //        currentColor = BlockColor[6];
+    //    }
+    //    else
+    //    {
+    //        currentArray = new int[3, 3]{
+    //        {1,1,0},
+    //        {0,1,1},      // Block 7
+    //        {0,0,0},
+    //        };
+    //        //currentArray = (int[,])Blocks[6].Clone();
+    //        currentColor = BlockColor[7];
+    //    }
+        
+    //}
+    class Block1: Tetromino
+    {
+        public Block1(Texture2D b) : base(b)
+        {
+            currentBlock = new int[4, 4] { 
+            {0,0,0,0},
+            {1,1,1,1},      
+            {0,0,0,0},
+            {0,0,0,0} };
+            currentColor = BlockColor[1];
+        }
+    }
+
+    class Block2: Tetromino
+    {
+        public Block2(Texture2D b) : base(b)
+        {
+            currentBlock = new int[3, 3]
+            {
+            {1,0,0},
+            {1,1,1},      
+            {0,0,0},
+            };
+            currentColor = BlockColor[2];
+        }   
+    }
+
+    class Block3 : Tetromino
+    {
+        public Block3(Texture2D b) : base(b)
+        {
+            currentBlock = new int[3, 3] { 
+            {0,0,1},
+            {1,1,1},      
+            {0,0,0},};
+            currentColor = BlockColor[3];
+        }
+    }
+
+    class Block4 : Tetromino
+    {
+        public Block4(Texture2D b) : base(b)
+        {
+            currentBlock = new int[2, 2]{
+            { 1,1},
+            { 1,1},      
+            };
+            currentColor = BlockColor[4];
+        }
+    }
+
+    class Block5 : Tetromino
+    {
+        public Block5(Texture2D b) : base(b)
+        {
+            currentBlock = new int[3, 3]{
+            {1,1,0},
+            {0,1,1},      
+            {0,0,0},
+            };
+            currentColor = BlockColor[5];
+        }
+    }
+
+    class Block6 : Tetromino
+    {
+        public Block6(Texture2D b) : base(b)
+        {
+            currentBlock = new int[3,3]{
+            {0,1,0},
+            {1,1,1},      
+            {0,0,0},
+            };
+            currentColor = BlockColor[6];
+        }
+    }
+
+    class Block7 : Tetromino
+    {
+        public Block7(Texture2D b) : base(b)
+        {
+            currentBlock = new int[3,3]{
+            {1,1,0},
+            {0,1,1},      
+            {0,0,0},
+            };
+            currentColor = BlockColor[7];
+        }
+    }
+
     public void Draw(GameTime gameTime, SpriteBatch t)
     {
-
-        //Array = currentArray;
-        for (int i = 0; i < 4; i++)
-            for (int j = 0; j < 4; j++)
+        
+        int size = currentArray.GetLength(0);
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
             {
-                if (Array[i, j] == 1)
+                if (currentArray[i, j] == 1)
                 {
+                    t.Begin();
                     t.Draw(TetBlock, Blockposition, currentColor);
+                    t.End();
                 }
             }
     }
@@ -224,9 +353,9 @@ class Tetromino
         if (gameTime.ElapsedGameTime.Seconds == 1)
         {
             Blockposition.Y += TetBlock.Height;
-            
+
         }
-        
+
     }
 
     public void reset()
