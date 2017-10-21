@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Tetris;
+using Microsoft.Xna.Framework.Input;
 
 namespace Tetris
 {
@@ -15,8 +16,10 @@ namespace Tetris
         Texture2D TetBlock;
         Tetromino tet;
         Vector2 Blockposition;
-        int[] array;
         int size;
+        public int Steptime = 500;
+        int ElapsedTime = 0;
+        int MouseElapsedTime = 0;
 
         public PositionDrawUpdate(Texture2D b)
         {
@@ -24,38 +27,45 @@ namespace Tetris
             TetBlock = b;
             tet.currentBlock = tet.createBlock();
             size = tet.currentBlock.GetLength(0);
-        }
 
-        public void Position(GameTime gameTime)
-        {
-            
-            //array = new int[4] { 1, 1, 1, 1 };
             for (int i = 0; i < size; i++)
                 for (int j = 0; j < size; j++)
                 {
-                    Blockposition.Y = i * TetBlock.Height + 20;
                     Blockposition.X = i * TetBlock.Width + 12 + 4 * TetBlock.Width;
+                    Blockposition.Y = j * TetBlock.Height + 20;
                 }
+
         }
-
-        public void Draw(GameTime gameTime, SpriteBatch t)
-        {
-            //int size = tet.currentBlock.GetLength(0);
-            for (int i = 0; i < size; i++)
-                for (int j = 0; j < size; j++)
-                {
-                    if (tet.currentBlock[i, j] == 1)
-                    {
-                        t.Draw(TetBlock, Blockposition, tet.currentColor);
-
-                    }
-                }
-        }       
 
         public void Update(GameTime gameTime)
         {
-            //if (gameTime.ElapsedGameTime.Seconds == 2)
-            //    Blockposition.Y += TetBlock.Height;
+            ElapsedTime += gameTime.ElapsedGameTime.Milliseconds;
+            if (ElapsedTime > Steptime)
+            {
+               
+                    Blockposition.Y += TetBlock.Height;
+                        ElapsedTime = 0;
+            }
         }
+        
+
+        
+
+        public void Draw(GameTime gameTime, SpriteBatch t)
+        {            
+            for (int i = 0; i < size; i++)
+                for (int j = 0; j < size; j++)
+                {
+
+                    //Blockposition.Y = j * TetBlock.Height + 20;
+                    //Blockposition.X = i * TetBlock.Width + 12 + 4 * TetBlock.Width;
+                    if (tet.currentBlock[i, j] == 1)
+                    {
+                        t.Draw(TetBlock, Blockposition, tet.currentColor);
+                    }
+                }
+        }
+
+       
     }
 }
