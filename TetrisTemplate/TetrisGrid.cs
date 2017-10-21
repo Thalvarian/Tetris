@@ -37,6 +37,8 @@ class TetrisGrid
     {
     }
 
+    public void Update(GameTime gameTime)
+    { }
     /*
      * draws the grid on the screen
      */

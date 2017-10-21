@@ -15,7 +15,7 @@ namespace Tetris
     {
         Texture2D TetBlock;
         Tetromino tet;
-        Vector2 Blockposition;
+        Vector2 spriteposition, Blockposition;
         int size;
         public int Steptime = 500;
         int ElapsedTime = 0;
@@ -31,8 +31,8 @@ namespace Tetris
             for (int i = 0; i < size; i++)
                 for (int j = 0; j < size; j++)
                 {
-                    Blockposition.X = i * TetBlock.Width + 12 + 4 * TetBlock.Width;
-                    Blockposition.Y = j * TetBlock.Height + 20;
+                    spriteposition.X = i * TetBlock.Width + 12 + 4 * TetBlock.Width;
+                    spriteposition.Y = j * TetBlock.Height + 20;
                 }
 
         }
@@ -41,31 +41,22 @@ namespace Tetris
         {
             ElapsedTime += gameTime.ElapsedGameTime.Milliseconds;
             if (ElapsedTime > Steptime)
-            {
-               
-                    Blockposition.Y += TetBlock.Height;
+            {               
+                    spriteposition.Y += TetBlock.Height;
                         ElapsedTime = 0;
             }
-        }
-        
-
-        
+        }        
 
         public void Draw(GameTime gameTime, SpriteBatch t)
         {            
             for (int i = 0; i < size; i++)
                 for (int j = 0; j < size; j++)
-                {
-
-                    //Blockposition.Y = j * TetBlock.Height + 20;
-                    //Blockposition.X = i * TetBlock.Width + 12 + 4 * TetBlock.Width;
+                {                    
                     if (tet.currentBlock[i, j] == 1)
                     {
-                        t.Draw(TetBlock, Blockposition, tet.currentColor);
+                        t.Draw(TetBlock, spriteposition, tet.currentColor);
                     }
                 }
-        }
-
-       
+        }       
     }
 }

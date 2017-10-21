@@ -53,7 +53,7 @@ class GameWorld
     TetrisGrid grid;
     Tetromino grid2;
     PositionDrawUpdate tetPDU;
-
+   
 
 
 
@@ -69,7 +69,7 @@ class GameWorld
         grid = new TetrisGrid(block);
         grid2 = new Tetromino();
         tetPDU = new PositionDrawUpdate(block);
-        
+       
 
 
     }
@@ -84,6 +84,7 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
+        grid.Update(gameTime);
         tetPDU.Update(gameTime);
     }
 
