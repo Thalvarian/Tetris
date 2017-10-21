@@ -37,7 +37,7 @@ class TetrisGame : Game
     protected override void LoadContent()
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
-        MediaPlayer.Play(Content.Load<Song>("SOUNDTRACK"));
+        
         
         // create and reset the game world
         gameWorld = new GameWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content);

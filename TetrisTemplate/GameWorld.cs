@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 using Tetris;
+using Microsoft.Xna.Framework.Media;
 
 /*
  * A class for representing the game world.
@@ -28,13 +29,12 @@ class GameWorld
      * main game font
      */
     SpriteFont font;
-    SoundEffect clearRow;
-
+    
     /*
      * sprite for representing a single tetris block element
      */
     public Texture2D block;
-
+    SoundEffect clearRow;
     /*
      * the current game state
      */
@@ -59,6 +59,7 @@ class GameWorld
 
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
+        MediaPlayer.Play(Content.Load<Song>("SOUNDTRACK"));
         clearRow = Content.Load<SoundEffect>("CLEAR");
 
 
@@ -66,7 +67,6 @@ class GameWorld
         grid2 = new Tetromino();
         tetPDU = new PositionDrawUpdate(block);
        
-
 
     }
 
