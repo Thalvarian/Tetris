@@ -80,6 +80,7 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
+
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

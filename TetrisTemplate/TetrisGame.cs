@@ -8,6 +8,7 @@ class TetrisGame : Game
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     GameWorld gameWorld;
+    Tetromino tetromino;
 
     [STAThread]
     static void Main(string[] args)
@@ -40,7 +41,7 @@ class TetrisGame : Game
 
         // create and reset the game world
         gameWorld = new GameWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content);
-        gameWorld.Reset();
+        gameWorld.Reset();        
     }
 
     protected override void Update(GameTime gameTime)
