@@ -11,7 +11,7 @@ class TetrisGrid
     public TetrisGrid(Texture2D b)
     {
         gridblock = b;
-        position = Vector2.Zero;
+        Blockposition = Vector2.Zero;
         this.Clear();
     }
     /*
@@ -26,7 +26,7 @@ class TetrisGrid
     /*
  * the position of the tetris grid
  */
-    Vector2 position;
+    public Vector2 Blockposition;
     int[,] TGrid;
         
    
@@ -51,8 +51,8 @@ class TetrisGrid
         {
             for (int x = 0; x < Width; x++)
             {   
-                Vector2 position = new Vector2(12 + x * gridblock.Width, 20 + y * gridblock.Width);
-                s.Draw(gridblock, position, Color.White);
+                Vector2 Blockposition = new Vector2(12 + x * gridblock.Width, 20 + y * gridblock.Width);
+                s.Draw(gridblock, Blockposition, Color.White);
             }
         }
     }
