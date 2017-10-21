@@ -25,17 +25,10 @@ class GameWorld
     int screenWidth, screenHeight;
 
     /*
-     * random number generator
-     */
-
-    
-
-
-
-    /*
      * main game font
      */
     SpriteFont font;
+    SoundEffect clearRow;
 
     /*
      * sprite for representing a single tetris block element
@@ -66,6 +59,9 @@ class GameWorld
 
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
+        clearRow = Content.Load<SoundEffect>("CLEAR");
+
+
         grid = new TetrisGrid(block);
         grid2 = new Tetromino();
         tetPDU = new PositionDrawUpdate(block);

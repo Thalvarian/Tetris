@@ -38,8 +38,7 @@ class TetrisGame : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
         MediaPlayer.Play(Content.Load<Song>("SOUNDTRACK"));
-        //SoundEffect clearRow = Content.Load<SoundEffect>("CLEAR");
-
+        
         // create and reset the game world
         gameWorld = new GameWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content);
         gameWorld.Reset();        
